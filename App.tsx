@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 import { Text } from 'react-native';
 import { ThemeProvider } from 'styled-components';
 
-import { theme } from './src/styles';
+import { theme } from '@/styles';
 
 SplashScreen.preventAutoHideAsync();
 

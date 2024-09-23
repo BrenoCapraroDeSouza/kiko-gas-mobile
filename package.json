@@ -20,6 +20,7 @@
     "expo-font": "~12.0.10",
     "expo-splash-screen": "~0.27.5",
     "expo-status-bar": "~1.12.1",
+    "phosphor-react-native": "^2.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.74.5",
