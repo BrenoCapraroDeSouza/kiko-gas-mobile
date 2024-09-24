@@ -26,4 +26,16 @@ export const theme = {
     alternative: RFValue(20),
     body: RFValue(16),
   },
+
+  boxShadow: {
+    shadowColor: '#FF6C25',
+    shadowOffset: {
+      width: 0,
+      height: 6,
+    },
+    shadowOpacity: 0.37,
+    shadowRadius: 7.49,
+
+    elevation: 12,
+  },
 };
