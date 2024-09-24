@@ -1,3 +1,5 @@
+import 'react-native-gesture-handler';
+
 import {
   Poppins_400Regular,
   Poppins_500Medium,
@@ -8,10 +10,10 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
-import { Text } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { ThemeProvider } from 'styled-components';
 
+import { Text } from '@/components';
 import { theme } from '@/styles';
 
 SplashScreen.preventAutoHideAsync();
@@ -43,7 +45,7 @@ export default function App() {
             networkActivityIndicatorVisible
           />
 
-          <Text>Hello Word!</Text>
+          <Text color='background'>Hello World!</Text>
         </ThemeProvider>
       </GestureHandlerRootView>
     </QueryClientProvider>

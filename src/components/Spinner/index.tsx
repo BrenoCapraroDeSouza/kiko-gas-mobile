@@ -5,11 +5,11 @@ import { useTheme } from 'styled-components';
 import { SpinnerProps } from '@/@types';
 
 function Spinner(props: SpinnerProps) {
-  const { color = 'secondary' } = props;
+  const { color = 'secondary', size = 'large' } = props;
 
   const theme = useTheme();
 
-  return <ActivityIndicator size='small' color={theme.colors[color]} />;
+  return <ActivityIndicator size={size} color={theme.colors[color]} />;
 }
 
 export default memo(Spinner);
