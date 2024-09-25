@@ -1,0 +1,20 @@
+{
+  "root": true,
+  "ignorePatterns": ["./node_modules", "./dist", "./assets", "./.husky"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": ["simple-import-sort", "prettier", "react"],
+  "rules": {
+    "prettier/prettier": "error",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "@typescript-eslint/no-empty-object-type": [
+      "error",
+      { "allowInterfaces": "always" }
+    ]
+  }
+}

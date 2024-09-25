@@ -3,7 +3,8 @@ import { useTheme } from 'styled-components';
 
 import { ButtonProps, ButtonVariant, Colors } from '@/@types';
 
-import { Spinner, Text } from '..';
+import Spinner from '../Spinner';
+import Text from '../Text';
 import { Container } from './styled';
 
 function Button(props: ButtonProps) {
