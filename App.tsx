@@ -13,7 +13,6 @@ import { useEffect } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { ThemeProvider } from 'styled-components';
 
-import { Text } from '@/components';
 import { theme } from '@/styles';
 
 SplashScreen.preventAutoHideAsync();
@@ -35,17 +34,22 @@ export default function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <GestureHandlerRootView style={{ flex: 1 }}>
+      <GestureHandlerRootView
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: theme.colors.content,
+        }}
+      >
         <ThemeProvider theme={theme}>
           <StatusBar
-            style='dark'
+            style='light'
             backgroundColor={theme.colors.transparent}
             animated
             translucent
             networkActivityIndicatorVisible
           />
-
-          <Text color='background'>Hello World!</Text>
         </ThemeProvider>
       </GestureHandlerRootView>
     </QueryClientProvider>
