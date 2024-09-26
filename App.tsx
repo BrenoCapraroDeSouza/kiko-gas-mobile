@@ -34,14 +34,7 @@ export default function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <GestureHandlerRootView
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-          backgroundColor: theme.colors.content,
-        }}
-      >
+      <GestureHandlerRootView style={{ flex: 1 }}>
         <ThemeProvider theme={theme}>
           <StatusBar
             style='light'

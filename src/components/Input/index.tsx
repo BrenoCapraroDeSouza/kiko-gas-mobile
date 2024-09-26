@@ -81,7 +81,11 @@ const Input = forwardRef((props: InputProps, ref: ForwardedRef<TextInput>) => {
       />
 
       {isPassword && (
-        <Button enabled={!isDisabled} onPress={handleVisibilityChange}>
+        <Button
+          enabled={!isDisabled}
+          activeOpacity={0.7}
+          onPress={handleVisibilityChange}
+        >
           <Icon
             variant={isVisibleText ? 'eye-slash' : 'eye'}
             color={isDisabled ? 'secondary70' : 'secondary'}
@@ -90,7 +94,11 @@ const Input = forwardRef((props: InputProps, ref: ForwardedRef<TextInput>) => {
       )}
 
       {isCopy && (
-        <Button enabled={!isDisabled} onPress={handleCopyInputText}>
+        <Button
+          enabled={!isDisabled}
+          activeOpacity={0.7}
+          onPress={handleCopyInputText}
+        >
           <Icon
             variant='copy-simple'
             color={isDisabled ? 'secondary70' : 'secondary'}
