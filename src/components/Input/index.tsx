@@ -45,18 +45,14 @@ const Input = forwardRef((props: InputProps, ref: ForwardedRef<TextInput>) => {
 
   const isCopy = variant === 'copy';
   const isPassword = variant === 'password';
-
-  const keyboardTypes: Record<InputVariant, KeyboardTypeOptions> = {
-    copy: 'default',
-    email: 'email-address',
-    password: 'default',
-    text: 'default',
-  };
+  const keyboardType: KeyboardTypeOptions =
+    variant === 'email' ? 'email-address' : 'default';
 
   const textContentTypes: Record<InputVariant, InputTextContentType> = {
-    copy: undefined,
+    address: 'fullStreetAddress',
     email: 'emailAddress',
     password: isVisibleText ? undefined : 'password',
+    copy: undefined,
     text: undefined,
   };
 
@@ -70,7 +66,7 @@ const Input = forwardRef((props: InputProps, ref: ForwardedRef<TextInput>) => {
         returnKeyType={returnKeyType}
         placeholder={placeholder}
         textContentType={textContentTypes[variant]}
-        keyboardType={keyboardTypes[variant]}
+        keyboardType={keyboardType}
         secureTextEntry={!isVisibleText}
         keyboardAppearance='dark'
         cursorColor={theme.colors.secondary}

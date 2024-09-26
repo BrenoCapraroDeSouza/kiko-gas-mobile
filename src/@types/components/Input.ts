@@ -1,9 +1,13 @@
 import { ForwardedRef } from 'react';
 import { ReturnKeyTypeOptions, TextInput } from 'react-native';
 
-export type InputTextContentType = 'emailAddress' | 'password' | undefined;
+export type InputTextContentType =
+  | 'emailAddress'
+  | 'password'
+  | 'fullStreetAddress'
+  | undefined;
 
-export type InputVariant = 'text' | 'password' | 'email' | 'copy';
+export type InputVariant = 'text' | 'password' | 'email' | 'copy' | 'address';
 
 export interface InputProps {
   variant?: InputVariant;
