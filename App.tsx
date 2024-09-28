@@ -10,9 +10,13 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
+import { Image, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { RFValue } from 'react-native-responsive-fontsize';
 import { ThemeProvider } from 'styled-components';
 
+import { Button, Input } from '@/components';
+import { PRIMARY_LOGO } from '@/config';
 import { theme } from '@/styles';
 
 SplashScreen.preventAutoHideAsync();
@@ -34,7 +38,16 @@ export default function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <GestureHandlerRootView style={{ flex: 1 }}>
+      <GestureHandlerRootView
+        style={{
+          flex: 1,
+          backgroundColor: theme.colors.background,
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: RFValue(16),
+          padding: RFValue(20),
+        }}
+      >
         <ThemeProvider theme={theme}>
           <StatusBar
             style='light'
@@ -43,6 +56,17 @@ export default function App() {
             translucent
             networkActivityIndicatorVisible
           />
+          <View style={{ marginBottom: RFValue(64) }}>
+            <Image
+              source={PRIMARY_LOGO}
+              style={{ width: RFValue(172.5), height: RFValue(119.5) }}
+            />
+          </View>
+          <View style={{ gap: 24, marginBottom: 64 }}>
+            <Input variant='email' placeholder='E-mail' />
+            <Input variant='password' placeholder='Senha' />
+          </View>
+          <Button title='Entrar' variant='primary' />
         </ThemeProvider>
       </GestureHandlerRootView>
     </QueryClientProvider>
