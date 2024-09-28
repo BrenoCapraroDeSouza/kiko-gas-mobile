@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import { useRef, useState } from 'react';
 import { Keyboard, TextInput, TouchableWithoutFeedback } from 'react-native';
 
@@ -15,11 +16,23 @@ import {
 } from './styled';
 
 export function Login() {
+  const navigation = useNavigation();
+
   const [userCredentials, setUserCredentials] = useState({} as LoginDTOProps);
 
   const inputPasswordRef = useRef<TextInput>(null);
 
-  function onSubmit(): void {}
+  function navigateToAddress(): void {
+    navigation.reset({
+      routes: [{ name: 'Address' }],
+      routeNames: ['Address'],
+      index: 0,
+    });
+  }
+
+  function onSubmit(): void {
+    navigateToAddress();
+  }
 
   function handleSubmitEditing(): void {
     if (inputPasswordRef && inputPasswordRef.current) {
