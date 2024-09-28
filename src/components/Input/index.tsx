@@ -1,11 +1,6 @@
 import { setStringAsync } from 'expo-clipboard';
 import { ForwardedRef, forwardRef, memo, useState } from 'react';
-import {
-  KeyboardTypeOptions,
-  NativeSyntheticEvent,
-  TextInput,
-  TextInputSubmitEditingEventData,
-} from 'react-native';
+import { KeyboardTypeOptions, TextInput } from 'react-native';
 import { useTheme } from 'styled-components';
 
 import { InputProps, InputTextContentType, InputVariant } from '@/@types';
@@ -13,14 +8,15 @@ import { InputProps, InputTextContentType, InputVariant } from '@/@types';
 import Icon from '../Icon';
 import { Button, Container, GenericInput } from './styled';
 
-const Input = forwardRef((props: InputProps, ref: ForwardedRef<TextInput>) => {
+const Input = forwardRef((props: InputProps, ref?: ForwardedRef<TextInput>) => {
   const {
-    variant = 'email',
+    variant = 'text',
     returnKeyType = 'default',
     value = '',
     placeholder = '',
     isDisabled = false,
     onChangeText,
+    onSubmitEditing,
   } = props;
 
   const theme = useTheme();
@@ -28,12 +24,6 @@ const Input = forwardRef((props: InputProps, ref: ForwardedRef<TextInput>) => {
   const [isVisibleText, setIsVisibleText] = useState<boolean>(
     variant !== 'password',
   );
-
-  function handleSubmitEditing(
-    event: NativeSyntheticEvent<TextInputSubmitEditingEventData>,
-  ): void {
-    if (onChangeText) onChangeText(event.nativeEvent.text);
-  }
 
   function handleVisibilityChange(): void {
     setIsVisibleText(!isVisibleText);
@@ -73,7 +63,7 @@ const Input = forwardRef((props: InputProps, ref: ForwardedRef<TextInput>) => {
         placeholderTextColor={theme.colors.secondary70}
         selectionColor={theme.colors.overlay40}
         onChangeText={onChangeText}
-        onSubmitEditing={handleSubmitEditing}
+        onSubmitEditing={onSubmitEditing}
       />
 
       {isPassword && (

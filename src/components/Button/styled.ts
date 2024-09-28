@@ -26,4 +26,5 @@ export const Container = styled(RectButton)<ButtonContainerStyles>`
 
   border-width: 1px;
   border-color: ${({ theme }) => theme.colors.primary};
+  border-radius: 4px;
 `;

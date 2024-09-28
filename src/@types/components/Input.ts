@@ -16,6 +16,7 @@ export interface InputProps {
   isDisabled?: boolean;
   returnKeyType?: ReturnKeyTypeOptions;
   onChangeText?: (value: string) => void;
+  onSubmitEditing?: () => void;
 }
 
 export interface InputGenericStyles {
