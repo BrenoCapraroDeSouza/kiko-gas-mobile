@@ -16,6 +16,7 @@ import { ToastProvider } from 'react-native-toast-notifications';
 import { ThemeProvider } from 'styled-components';
 
 import { DEFAULT_TOAST_TIME } from '@/config';
+import { getStatusBarHeight } from '@/helpers';
 import { Routes } from '@/routes';
 import { theme, toastContainerStyle, toastTextStyle } from '@/styles';
 
@@ -55,6 +56,7 @@ export default function App() {
               duration={DEFAULT_TOAST_TIME}
               style={toastContainerStyle}
               textStyle={toastTextStyle}
+              offsetTop={getStatusBarHeight()}
             >
               <Routes />
             </ToastProvider>
