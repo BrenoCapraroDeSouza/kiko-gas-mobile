@@ -34,6 +34,7 @@ export const GenericButton = styled(RectButton)<GenericButtonStyles>`
     isDisabled ? disabledBackgroundColors[variant] : theme.colors[variant]};
 
   border-width: 1px;
-  border-color: ${({ theme }) => theme.colors.primary};
+  border-color: ${({ theme, variant, isDisabled }) =>
+    isDisabled ? disabledBackgroundColors[variant] : theme.colors[variant]};
   border-radius: 4px;
 `;

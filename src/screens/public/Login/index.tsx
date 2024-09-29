@@ -1,10 +1,12 @@
 import { useNavigation } from '@react-navigation/native';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Keyboard, TextInput, TouchableWithoutFeedback } from 'react-native';
+import { useToast } from 'react-native-toast-notifications';
 
 import { LoginDTOProps } from '@/@types';
 import { Button, Container, Input } from '@/components';
 import { PRIMARY_LOGO } from '@/config';
+import { useLogin } from '@/hooks';
 
 import {
   ButtonWrapper,
@@ -17,6 +19,14 @@ import {
 
 export function Login() {
   const navigation = useNavigation();
+  const { show } = useToast();
+  const {
+    isLoginError,
+    isLoginLoading,
+    isLoginSuccess,
+    setIsLoginError,
+    login,
+  } = useLogin();
 
   const [userCredentials, setUserCredentials] = useState({} as LoginDTOProps);
 
@@ -30,15 +40,27 @@ export function Login() {
     });
   }
 
-  function onSubmit(): void {
-    navigateToAddress();
-  }
-
   function handleSubmitEditing(): void {
     if (inputPasswordRef && inputPasswordRef.current) {
       inputPasswordRef.current.focus();
     }
   }
+
+  async function onSubmit(): Promise<void> {
+    await login(userCredentials);
+  }
+
+  useEffect(() => {
+    if (isLoginError) {
+      setIsLoginError(false);
+
+      show('Verifique suas credenciais e tente novamente.');
+    }
+  }, [isLoginError, setIsLoginError]);
+
+  useEffect(() => {
+    if (isLoginSuccess) navigateToAddress();
+  }, [isLoginSuccess]);
 
   return (
     <Container>
@@ -59,6 +81,7 @@ export function Login() {
                   setUserCredentials({ ...userCredentials, email })
                 }
                 onSubmitEditing={handleSubmitEditing}
+                isDisabled={isLoginLoading}
               />
 
               <Input
@@ -70,12 +93,19 @@ export function Login() {
                 onChangeText={password =>
                   setUserCredentials({ ...userCredentials, password })
                 }
-                onSubmitEditing={onSubmit}
+                onSubmitEditing={async () => await onSubmit()}
+                isDisabled={isLoginLoading}
               />
             </InputContainer>
 
             <ButtonWrapper>
-              <Button title='Entrar' variant='primary' onPress={onSubmit} />
+              <Button
+                title='Entrar'
+                variant='primary'
+                onPress={async () => await onSubmit()}
+                isDisabled={isLoginLoading}
+                isLoading={isLoginLoading}
+              />
             </ButtonWrapper>
           </Content>
         </TouchableWithoutFeedback>

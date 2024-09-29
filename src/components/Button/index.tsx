@@ -20,7 +20,7 @@ function Button(props: ButtonProps) {
 
   const isDisabledOrLoading = isDisabled || isLoading;
 
-  const buttonColors: Record<ButtonVariant, Colors> = {
+  const colors: Record<ButtonVariant, Colors> = {
     primary: isDisabledOrLoading ? 'secondary70' : 'secondary',
     secondary: isDisabledOrLoading ? 'primary' : 'primary',
   };
@@ -31,13 +31,14 @@ function Button(props: ButtonProps) {
         variant={variant}
         style={theme.boxShadow}
         isDisabled={isDisabledOrLoading}
+        enabled={isDisabledOrLoading}
         onPress={onPress}
       >
         {isLoading ? (
-          <Spinner color={buttonColors[variant]} />
+          <Spinner color={colors[variant]} />
         ) : (
           <Text
-            color={buttonColors[variant]}
+            color={colors[variant]}
             fontSize='alternative'
             fontFamily='semiBold'
             toCenter

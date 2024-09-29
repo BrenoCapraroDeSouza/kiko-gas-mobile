@@ -61,7 +61,7 @@ const Input = forwardRef((props: InputProps, ref?: ForwardedRef<TextInput>) => {
         keyboardAppearance='dark'
         cursorColor={theme.colors.secondary}
         placeholderTextColor={theme.colors.secondary70}
-        selectionColor={theme.colors.overlay40}
+        selectionColor={theme.colors.secondary}
         onChangeText={onChangeText}
         onSubmitEditing={onSubmitEditing}
       />
