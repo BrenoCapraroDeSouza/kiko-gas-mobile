@@ -12,10 +12,12 @@ import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { ToastProvider } from 'react-native-toast-notifications';
 import { ThemeProvider } from 'styled-components';
 
+import { DEFAULT_TOAST_TIME } from '@/config';
 import { Routes } from '@/routes';
-import { theme } from '@/styles';
+import { theme, toastContainerStyle, toastTextStyle } from '@/styles';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -47,7 +49,15 @@ export default function App() {
               networkActivityIndicatorVisible
             />
 
-            <Routes />
+            <ToastProvider
+              placement='top'
+              swipeEnabled
+              duration={DEFAULT_TOAST_TIME}
+              style={toastContainerStyle}
+              textStyle={toastTextStyle}
+            >
+              <Routes />
+            </ToastProvider>
           </ThemeProvider>
         </GestureHandlerRootView>
       </SafeAreaProvider>

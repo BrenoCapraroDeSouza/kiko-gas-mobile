@@ -25,6 +25,7 @@ export const theme = {
     title: RFValue(24),
     alternative: RFValue(20),
     body: RFValue(16),
+    small: RFValue(12),
   },
 
   boxShadow: {
