@@ -10,7 +10,7 @@ export function Routes() {
   return (
     <NavigationContainer>
       <Navigator
-        initialRouteName='Login'
+        initialRouteName={'Login'}
         screenOptions={{ headerShown: false }}
       >
         <Screen name='Login' component={Login} />
