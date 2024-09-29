@@ -1,7 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { useRef, useState } from 'react';
 import { Keyboard, TextInput, TouchableWithoutFeedback } from 'react-native';
-import { useToast } from 'react-native-toast-notifications';
 
 import { LoginDTOProps } from '@/@types';
 import { Button, Container, Input } from '@/components';
@@ -18,7 +17,6 @@ import {
 
 export function Login() {
   const navigation = useNavigation();
-  const toast = useToast();
 
   const [userCredentials, setUserCredentials] = useState({} as LoginDTOProps);
 
@@ -34,7 +32,6 @@ export function Login() {
 
   function onSubmit(): void {
     navigateToAddress();
-    toast.show('Teste');
   }
 
   function handleSubmitEditing(): void {

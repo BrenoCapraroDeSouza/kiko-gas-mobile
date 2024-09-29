@@ -8,6 +8,6 @@ export interface ButtonProps {
   onPress?: () => void;
 }
 
-export type ButtonContainerStyles = Required<
+export type GenericButtonStyles = Required<
   Pick<ButtonProps, 'variant' | 'isDisabled'>
 >;

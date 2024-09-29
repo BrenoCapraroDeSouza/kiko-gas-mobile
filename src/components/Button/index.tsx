@@ -5,7 +5,7 @@ import { ButtonProps, ButtonVariant, Colors } from '@/@types';
 
 import Spinner from '../Spinner';
 import Text from '../Text';
-import { Container } from './styled';
+import { Container, GenericButton } from './styled';
 
 function Button(props: ButtonProps) {
   const {
@@ -26,24 +26,26 @@ function Button(props: ButtonProps) {
   };
 
   return (
-    <Container
-      variant={variant}
-      style={theme.boxShadow}
-      isDisabled={isDisabledOrLoading}
-      onPress={onPress}
-    >
-      {isLoading ? (
-        <Spinner color={buttonColors[variant]} />
-      ) : (
-        <Text
-          color={buttonColors[variant]}
-          fontSize='alternative'
-          fontFamily='semiBold'
-          toCenter
-        >
-          {title}
-        </Text>
-      )}
+    <Container>
+      <GenericButton
+        variant={variant}
+        style={theme.boxShadow}
+        isDisabled={isDisabledOrLoading}
+        onPress={onPress}
+      >
+        {isLoading ? (
+          <Spinner color={buttonColors[variant]} />
+        ) : (
+          <Text
+            color={buttonColors[variant]}
+            fontSize='alternative'
+            fontFamily='semiBold'
+            toCenter
+          >
+            {title}
+          </Text>
+        )}
+      </GenericButton>
     </Container>
   );
 }

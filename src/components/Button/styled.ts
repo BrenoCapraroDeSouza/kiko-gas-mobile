@@ -2,7 +2,7 @@ import { RectButton } from 'react-native-gesture-handler';
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
-import { ButtonContainerStyles, ButtonVariant } from '@/@types';
+import { ButtonVariant, GenericButtonStyles } from '@/@types';
 import { theme } from '@/styles';
 
 const disabledBackgroundColors: Record<ButtonVariant, string> = {
@@ -10,11 +10,20 @@ const disabledBackgroundColors: Record<ButtonVariant, string> = {
   secondary: theme.colors.secondary70,
 };
 
-export const Container = styled(RectButton)<ButtonContainerStyles>`
-  display: flex;
+export const Container = styled.View`
+  overflow: hidden;
 
   width: 100%;
   height: ${RFValue(60)}px;
+
+  border-radius: 4px;
+`;
+
+export const GenericButton = styled(RectButton)<GenericButtonStyles>`
+  display: flex;
+
+  width: 100%;
+  height: 100%;
 
   justify-content: center;
   align-items: center;
