@@ -4,6 +4,8 @@ import Animated from 'react-native-reanimated';
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
+import { isIos } from '@/helpers';
+
 const BorderlessButtonAnimated =
   Animated.createAnimatedComponent(BorderlessButton);
 
@@ -13,7 +15,7 @@ export const ButtonWrapper = styled(Animated.View)`
   position: absolute;
 
   right: 0;
-  bottom: ${getBottomSpace()}px;
+  bottom: ${isIos() ? getBottomSpace() : 20}px;
 
   display: flex;
 

@@ -38,8 +38,6 @@ export function Login() {
     if (inputPasswordRef && inputPasswordRef.current) {
       inputPasswordRef.current.focus();
     }
-
-    onSubmit();
   }
 
   return (
@@ -72,6 +70,7 @@ export function Login() {
                 onChangeText={password =>
                   setUserCredentials({ ...userCredentials, password })
                 }
+                onSubmitEditing={onSubmit}
               />
             </InputContainer>
 

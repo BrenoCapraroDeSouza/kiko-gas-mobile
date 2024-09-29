@@ -50,5 +50,5 @@ export const ButtonWrapper = styled.View`
 
   justify-content: flex-end;
 
-  padding-bottom: ${getBottomSpace()}px;
+  padding-bottom: ${isIos() ? getBottomSpace() : 20}px;
 `;
