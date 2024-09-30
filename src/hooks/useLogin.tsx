@@ -3,12 +3,15 @@ import { useState } from 'react';
 
 import { LoginDTOProps, LoginResponseDTOProps } from '@/@types';
 import { api } from '@/config';
+import { Storage } from '@/libs';
 
 export function useLogin() {
   const [isLoginError, setIsLoginError] = useState<boolean>(false);
 
   async function fetchMutation(user: LoginDTOProps): Promise<void> {
-    await api.post<LoginResponseDTOProps>('/login', user);
+    const { data } = await api.post<LoginResponseDTOProps>('/login', user);
+
+    await Storage.setItem('token', JSON.stringify(data.token));
   }
 
   const {
