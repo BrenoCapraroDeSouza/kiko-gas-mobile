@@ -1,3 +1,9 @@
+import { Container } from '@/components';
+
 export function Address() {
-  return <></>;
+  return (
+    <Container>
+      <></>
+    </Container>
+  );
 }

@@ -1,3 +1,9 @@
+import { Container } from '@/components';
+
 export function MyGas() {
-  return <></>;
+  return (
+    <Container>
+      <></>
+    </Container>
+  );
 }
