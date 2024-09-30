@@ -31,7 +31,7 @@ function Button(props: ButtonProps) {
         variant={variant}
         style={theme.boxShadow}
         isDisabled={isDisabledOrLoading}
-        enabled={isDisabledOrLoading}
+        enabled={!isDisabledOrLoading}
         onPress={onPress}
       >
         {isLoading ? (
