@@ -18,7 +18,7 @@ export function useRefresh() {
       {},
       {
         headers: {
-          Authorization: `Bearer ${JSON.parse(accessToken)}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       },
     );

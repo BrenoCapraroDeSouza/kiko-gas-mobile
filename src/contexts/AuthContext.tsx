@@ -1,7 +1,7 @@
 import { createContext, PropsWithChildren, useEffect, useState } from 'react';
 
 import { AuthContextProps } from '@/@types';
-import { useRefresh } from '@/hooks';
+import { useRefresh } from '@/hooks/useRefresh';
 import { Storage } from '@/libs';
 
 export const AuthContext = createContext({} as AuthContextProps);
