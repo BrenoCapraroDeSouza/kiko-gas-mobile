@@ -6,7 +6,7 @@ import { useToast } from 'react-native-toast-notifications';
 import { LoginDTOProps } from '@/@types';
 import { Button, Container, Input } from '@/components';
 import { PRIMARY_LOGO } from '@/config';
-import { useLogin } from '@/hooks';
+import { useAuth, useLogin } from '@/hooks';
 
 import {
   ButtonWrapper,
@@ -20,6 +20,7 @@ import {
 export function Login() {
   const navigation = useNavigation();
   const { show } = useToast();
+  const { changeToLogged } = useAuth();
   const {
     isLoginError,
     isLoginLoading,
@@ -32,10 +33,10 @@ export function Login() {
 
   const inputPasswordRef = useRef<TextInput>(null);
 
-  function navigateToAddress(): void {
+  function navigateToMyAddresses(): void {
     navigation.reset({
-      routes: [{ name: 'Address' }],
-      routeNames: ['Address'],
+      routes: [{ name: 'MyAddresses' }],
+      routeNames: ['MyAddresses'],
       index: 0,
     });
   }
@@ -48,6 +49,8 @@ export function Login() {
 
   async function onSubmit(): Promise<void> {
     await login(userCredentials);
+
+    await changeToLogged();
   }
 
   useEffect(() => {
@@ -59,7 +62,7 @@ export function Login() {
   }, [isLoginError, setIsLoginError]);
 
   useEffect(() => {
-    if (isLoginSuccess) navigateToAddress();
+    if (isLoginSuccess) navigateToMyAddresses();
   }, [isLoginSuccess]);
 
   return (

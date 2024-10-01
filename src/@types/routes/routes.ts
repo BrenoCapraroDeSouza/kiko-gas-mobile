@@ -2,7 +2,7 @@ import { RouteProp } from '@react-navigation/native';
 
 export type StackRoutesProps = {
   Login: undefined;
-  Address: undefined;
+  MyAddresses: undefined;
   MyGas: undefined;
 };
 

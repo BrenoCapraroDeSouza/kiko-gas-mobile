@@ -1,6 +1,6 @@
 import { Container } from '@/components';
 
-export function Address() {
+export function MyAddresses() {
   return (
     <Container>
       <></>

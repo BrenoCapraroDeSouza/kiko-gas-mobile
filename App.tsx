@@ -9,13 +9,13 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ToastProvider } from 'react-native-toast-notifications';
 import { ThemeProvider } from 'styled-components';
 
 import { DEFAULT_TOAST_TIME } from '@/config';
+import { AuthProvider } from '@/contexts';
 import { getStatusBarHeight } from '@/helpers';
 import { Routes } from '@/routes';
 import { theme, toastContainerStyle, toastTextStyle } from '@/styles';
@@ -30,10 +30,6 @@ export default function App() {
     Poppins_500Medium,
     Poppins_600SemiBold,
   });
-
-  useEffect(() => {
-    if (isFontsLoaded) SplashScreen.hideAsync();
-  }, [isFontsLoaded]);
 
   if (!isFontsLoaded) return null;
 
@@ -58,7 +54,9 @@ export default function App() {
               textStyle={toastTextStyle}
               offsetTop={getStatusBarHeight()}
             >
-              <Routes />
+              <AuthProvider>
+                <Routes />
+              </AuthProvider>
             </ToastProvider>
           </ThemeProvider>
         </GestureHandlerRootView>

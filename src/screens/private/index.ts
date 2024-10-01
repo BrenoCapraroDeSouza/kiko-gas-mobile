@@ -1,2 +1,2 @@
-export * from './Address';
+export * from './MyAddresses';
 export * from './MyGas';
