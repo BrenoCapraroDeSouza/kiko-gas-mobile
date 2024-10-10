@@ -1,4 +1,4 @@
-import { Container, EmptyList, Header } from '@/components';
+import { AddButton, Container, EmptyList, Header } from '@/components';
 
 export function MyAddresses() {
   return (
@@ -6,6 +6,8 @@ export function MyAddresses() {
       <Header variant='address' />
 
       <EmptyList variant='address' />
+
+      <AddButton />
     </Container>
   );
 }

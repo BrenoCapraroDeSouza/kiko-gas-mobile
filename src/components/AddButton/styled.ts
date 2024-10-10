@@ -14,7 +14,7 @@ export const ButtonWrapper = styled(Animated.View)`
 
   position: absolute;
 
-  right: 0;
+  right: ${RFValue(20)}px;
   bottom: ${isIos() ? getBottomSpace() : 20}px;
 
   display: flex;
