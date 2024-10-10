@@ -8,7 +8,6 @@ import Input from './Input';
 import Spinner from './Spinner';
 import Text from './Text';
 
-// eslint-disable-next-line prettier/prettier
 export {
   AddButton,
   Button,

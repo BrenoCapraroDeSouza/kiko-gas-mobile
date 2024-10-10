@@ -20,7 +20,8 @@ export type IconVariant =
   | 'copy-simple'
   | 'check-circle'
   | 'pix-logo'
-  | 'money';
+  | 'money'
+  | 'x';
 
 export type IconSize = 'default' | 'large' | 'x-large' | 'giant';
 

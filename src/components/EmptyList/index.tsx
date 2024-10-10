@@ -2,33 +2,33 @@ import { Record } from 'phosphor-react-native';
 import { memo } from 'react';
 
 import { IconVariant } from '@/@types';
-import {
-  EmptyListProps,
-  EmptyListVariant,
-} from '@/@types/components/EmptyList';
+import { EmptyListProps, EmptyListVariant } from '@/@types';
 
 import Icon from '../Icon';
 import Text from '../Text';
+import { Container } from './styled';
 
 function EmptyList(props: EmptyListProps) {
-  const { variant = 'adress' } = props;
+  const { variant } = props;
 
   const icons: Record<EmptyListVariant, IconVariant> = {
-    adress: 'map-trifold',
+    address: 'map-trifold',
     gas: 'oven',
   };
+
   const titles: Record<EmptyListVariant, string> = {
-    adress: 'Você ainda não tem endereços',
+    address: 'Você ainda não tem endereços',
     gas: 'Não há botijões cadastrados',
   };
 
   return (
-    <>
+    <Container>
       <Icon variant={icons[variant]} size='giant' />
+
       <Text color='secondary' fontSize='body' fontFamily='semiBold' toCenter>
         {titles[variant]}
       </Text>
-    </>
+    </Container>
   );
 }
 

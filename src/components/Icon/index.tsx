@@ -20,6 +20,7 @@ import {
   PixLogo,
   PlusCircle,
   Trash,
+  X,
 } from 'phosphor-react-native';
 import { memo } from 'react';
 import { RFValue } from 'react-native-responsive-fontsize';
@@ -65,6 +66,7 @@ function Icon(props: IconProps) {
     trash: <Trash {...commonIconProps} />,
     money: <Money {...commonIconProps} />,
     oven: <Oven {...commonIconProps} />,
+    x: <X {...commonIconProps} />,
   };
 
   return icons[variant];

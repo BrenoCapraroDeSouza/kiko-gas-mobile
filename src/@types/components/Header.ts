@@ -1,8 +1,10 @@
-export type HeaderVariant = 'adress' | 'gas';
+export type HeaderVariant = 'address' | 'gas';
 
 export interface HeaderProps {
-  title?: string;
-  variant?: HeaderVariant;
+  variant: HeaderVariant;
 }
 
-export type GenericHeaderStyles = Required<Pick<HeaderProps, 'variant'>>;
+export interface HeaderButtonStyles {
+  isRight?: boolean;
+  isLeft?: boolean;
+}

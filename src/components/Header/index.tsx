@@ -1,46 +1,60 @@
+import { useNavigation } from '@react-navigation/native';
 import { Record } from 'phosphor-react-native';
-import { memo } from 'react';
-import { View } from 'react-native';
-import { RFValue } from 'react-native-responsive-fontsize';
+import { memo, useState } from 'react';
 
 import { IconVariant } from '@/@types';
-import { HeaderProps, HeaderVariant } from '@/@types/components/Header';
-import { theme } from '@/styles';
+import { HeaderProps, HeaderVariant } from '@/@types';
 
 import Icon from '../Icon';
 import Text from '../Text';
+import { Button, Container } from './styled';
 
 function Header(props: HeaderProps) {
-  const { variant = 'adress' } = props;
+  const { variant } = props;
+
+  const navigation = useNavigation();
+
+  const [isEnabledDelete, setIsEnabledDelete] = useState<boolean>(false);
+
+  const isAddress = variant === 'address';
+  const isGas = variant === 'gas';
 
   const icons: Record<HeaderVariant, IconVariant> = {
-    adress: 'trash',
+    address: isEnabledDelete ? 'x' : 'trash',
     gas: 'caret-left',
   };
+
   const titles: Record<HeaderVariant, string> = {
-    adress: 'Adicione e veja seus endereços de forma agradável e simples',
+    address: 'Adicione e veja seus endereços de forma agradável e simples',
     gas: 'Gerencie seu gás da melhor maneira!',
   };
 
+  function handleGoBack(): void {
+    if (navigation.canGoBack()) navigation.goBack();
+  }
+
+  function handlePressDelete(): void {
+    setIsEnabledDelete(!isEnabledDelete);
+  }
+
   return (
-    <View
-      style={{
-        flex: 0.4,
-        borderBottomWidth: RFValue(2),
-        borderBottomColor: theme.colors.secondary,
-        justifyContent: 'center',
-        backgroundColor: theme.colors.content,
-      }}
-    >
-      <View style={{ alignItems: 'flex-end', padding: RFValue(20) }}>
-        <Icon variant={icons[variant]} size='default' />
-      </View>
-      <View style={{ paddingHorizontal: RFValue(42) }}>
-        <Text color='secondary' fontSize='title' fontFamily='semiBold'>
-          {titles[variant]}
-        </Text>
-      </View>
-    </View>
+    <Container>
+      {isGas && (
+        <Button isLeft onPress={handleGoBack}>
+          <Icon variant={icons[variant]} size='default' />
+        </Button>
+      )}
+
+      {isAddress && (
+        <Button isRight onPress={handlePressDelete}>
+          <Icon variant={icons[variant]} size='default' />
+        </Button>
+      )}
+
+      <Text color='secondary' fontSize='title' fontFamily='medium'>
+        {titles[variant]}
+      </Text>
+    </Container>
   );
 }
 

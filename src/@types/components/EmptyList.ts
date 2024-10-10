@@ -1,8 +1,5 @@
-export type EmptyListVariant = 'adress' | 'gas';
+export type EmptyListVariant = 'address' | 'gas';
 
 export interface EmptyListProps {
-  title?: string;
-  variant?: EmptyListVariant;
+  variant: EmptyListVariant;
 }
-
-export type GenericEmptyListStyles = Required<Pick<EmptyListProps, 'variant'>>;
