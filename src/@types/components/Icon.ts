@@ -23,7 +23,7 @@ export type IconVariant =
   | 'money'
   | 'x';
 
-export type IconSize = 'small' | 'default' | 'large' | 'x-large' | 'giant';
+export type IconSize = 'default' | 'large' | 'x-large' | 'giant';
 
 export interface IconProps {
   variant: IconVariant;

@@ -1,53 +1,57 @@
-import { memo } from 'react';
+import { memo, useState } from 'react';
 
 import { AddressCardProps } from '@/@types';
 
 import Icon from '../Icon';
 import Text from '../Text';
 import {
-  Button,
-  ButtonRadio,
-  ButtonRadioWrapper,
-  ButtonWrapper,
+  AddressTitleWrapper,
+  AddressWrapper,
+  Card,
   Container,
   Content,
   Dot,
+  IconWrapper,
+  Radio,
 } from './styled';
 
 function AddressCard(props: AddressCardProps) {
-  const Address = props;
+  const { mode = 'select', address, title, onPress } = props;
 
-  const mapIcon = 'map-trifold';
+  const [isSelected, setIsSelected] = useState<boolean>(true);
 
-  const isEnabledDelete = true;
-  const isEnabledEdit = false;
+  const isDefault = mode === 'default';
+
+  function handlePressCard(): void {
+    if (!isDefault) setIsSelected(!isSelected);
+    if (onPress) onPress();
+  }
 
   return (
     <Container>
-      <Content>
-        <Text color='primary' fontSize='small' fontFamily='semiBold'>
-          <Icon variant={mapIcon} size='small' color='primary' />
-          {'  '}
-          {Address.title}
-        </Text>
-        <Text color='secondary' fontSize='small' fontFamily='regular'>
-          {Address.streetName}, {Address.number}, {Address.neighborhood},{' '}
-          {Address.city} - {Address.state}, {Address.zipCode}
-        </Text>
-      </Content>
-      {isEnabledEdit && (
-        <ButtonWrapper>
-          <Button>
-            <Icon variant={'caret-right'} size='small' color='secondary' />
-          </Button>
-        </ButtonWrapper>
-      )}
-      {isEnabledDelete && (
-        <ButtonRadioWrapper>
-          <ButtonRadio />
-          <Dot />
-        </ButtonRadioWrapper>
-      )}
+      <Card onPress={handlePressCard}>
+        <Content>
+          <AddressTitleWrapper>
+            <Icon variant='map-trifold' color='primary' />
+
+            <Text color='primary' fontFamily='semiBold'>
+              {title}
+            </Text>
+          </AddressTitleWrapper>
+
+          <AddressWrapper>
+            <Text fontFamily='regular'>{address}</Text>
+          </AddressWrapper>
+        </Content>
+
+        <IconWrapper>
+          {isDefault ? (
+            <Icon variant='caret-right' />
+          ) : (
+            <Radio>{isSelected && <Dot />}</Radio>
+          )}
+        </IconWrapper>
+      </Card>
     </Container>
   );
 }
