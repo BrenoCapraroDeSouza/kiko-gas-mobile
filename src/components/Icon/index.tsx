@@ -34,6 +34,7 @@ function Icon(props: IconProps) {
   const theme = useTheme();
 
   const iconSizes: Record<IconSize, number> = {
+    small: RFValue(16),
     default: RFValue(24),
     large: RFValue(32),
     'x-large': RFValue(48),

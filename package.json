@@ -19,7 +19,7 @@
     "@react-navigation/native-stack": "^6.11.0",
     "@tanstack/react-query": "^5.56.2",
     "axios": "^1.7.7",
-    "expo": "~51.0.34",
+    "expo": "~51.0.37",
     "expo-clipboard": "~6.0.3",
     "expo-font": "~12.0.10",
     "expo-splash-screen": "~0.27.6",

@@ -1,4 +1,5 @@
 export * from './AddButton';
+export * from './AddressCard';
 export * from './Button';
 export * from './EmptyList';
 export * from './Header';
