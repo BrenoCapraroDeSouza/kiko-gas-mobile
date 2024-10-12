@@ -16,7 +16,7 @@ import {
 } from './styled';
 
 function AddressCard(props: AddressCardProps) {
-  const { mode = 'select', address, title, onPress } = props;
+  const { mode = 'default', address, title, onPress } = props;
 
   const [isSelected, setIsSelected] = useState<boolean>(true);
 
@@ -29,7 +29,7 @@ function AddressCard(props: AddressCardProps) {
 
   return (
     <Container>
-      <Card onPress={handlePressCard}>
+      <Card onPress={handlePressCard} activeOpacity={0.7}>
         <Content>
           <AddressTitleWrapper>
             <Icon variant='map-trifold' color='primary' />
