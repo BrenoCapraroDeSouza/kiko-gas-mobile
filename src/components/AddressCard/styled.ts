@@ -34,6 +34,8 @@ export const Content = styled.View`
 export const AddressTitleWrapper = styled.View`
   flex-direction: row;
 
+  align-items: center;
+
   gap: ${RFValue(8)}px;
 `;
 

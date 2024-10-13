@@ -1,3 +1,6 @@
+import { useCallback } from 'react';
+
+import { AddressCardProps } from '@/@types';
 import {
   AddButton,
   AddressCard,
@@ -6,31 +9,33 @@ import {
   Header,
 } from '@/components';
 
-export function MyAddresses() {
-  const ADDRESSES = [
-    {
-      title: 'Summerland Residence',
-      address: 'R. Joaquim Zucco, 400, Centro, Brusque, SC - 88352-195',
-    },
-    {
-      title: 'Summerland Residence',
-      address: 'R. Bandeirantes, 22, Centro, Brusque, SC - 88350-000',
-    },
-  ];
+import { List } from './styled';
 
-  const hasAddresses = !!ADDRESSES.length;
+export function MyAddresses() {
+  const renderItem = useCallback(
+    (address: Pick<AddressCardProps, 'address' | 'title'>) => (
+      <AddressCard {...address} />
+    ),
+    [],
+  );
+
+  // TODO: Change to `id` property
+  const keyExtractor = useCallback(
+    (address: Pick<AddressCardProps, 'address' | 'title'>) =>
+      address.address.toString(),
+    [],
+  );
 
   return (
     <Container>
       <Header variant='address' />
 
-      {hasAddresses ? (
-        ADDRESSES.map((address, index) => (
-          <AddressCard key={index} {...address} />
-        ))
-      ) : (
-        <EmptyList variant='address' />
-      )}
+      <List
+        data={[]}
+        renderItem={({ item }) => renderItem(item)}
+        keyExtractor={keyExtractor}
+        ListEmptyComponent={<EmptyList variant='address' />}
+      />
 
       <AddButton />
     </Container>
