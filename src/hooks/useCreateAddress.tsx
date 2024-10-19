@@ -11,6 +11,7 @@ export function useCreateAddress() {
 
   async function fetchMutation(address: AddressDTOProps): Promise<boolean> {
     const accessToken = await Storage.getItem('token');
+
     const { data } = await api.patch<UserDTOProps>(
       '/clients/address',
       address,

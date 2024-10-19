@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { TextInput, View } from 'react-native';
 import { useToast } from 'react-native-toast-notifications';
 
-import { AddressCardProps, AddressDTOProps } from '@/@types';
+import { AddressDTOProps } from '@/@types';
 import {
   AddButton,
   AddressCard,
@@ -13,9 +13,10 @@ import {
   EmptyList,
   Header,
   Input,
+  Spinner,
   Text,
 } from '@/components';
-import { useCreateAddress } from '@/hooks';
+import { useCreateAddress, useGetAddresses } from '@/hooks';
 
 import { BottomSheetContent, InputContainer, List } from './styled';
 
@@ -34,7 +35,10 @@ export function MyAddresses() {
     createNewAddress,
     setIsCreateAddressError,
   } = useCreateAddress();
+  const { addresses, isAddressesLoading, refreshAddresses } = useGetAddresses();
   const { show } = useToast();
+
+  console.log(isAddressesLoading);
 
   const isDisabled = !newAddress.name || !newAddress.address;
 
@@ -48,6 +52,7 @@ export function MyAddresses() {
     if (isCreated) show('Endereço adicionado!');
 
     onCloseBottomSheet();
+    await refreshAddresses();
   }
 
   const onOpenBottomSheet = useCallback(() => {
@@ -67,16 +72,15 @@ export function MyAddresses() {
   }, []);
 
   const renderItem = useCallback(
-    (address: Pick<AddressCardProps, 'address' | 'title'>) => (
-      <AddressCard {...address} />
+    (address: AddressDTOProps) => (
+      <AddressCard {...address} title={address.name} />
     ),
     [],
   );
 
   // TODO: Change to `id` property
   const keyExtractor = useCallback(
-    (address: Pick<AddressCardProps, 'address' | 'title'>) =>
-      address.address.toString(),
+    (address: AddressDTOProps) => address.address.toString(),
     [],
   );
 
@@ -95,10 +99,12 @@ export function MyAddresses() {
       <Header variant='address' />
 
       <List
-        data={[]}
+        data={addresses}
         renderItem={({ item }) => renderItem(item)}
         keyExtractor={keyExtractor}
-        ListEmptyComponent={<EmptyList variant='address' />}
+        ListEmptyComponent={
+          isAddressesLoading ? <Spinner /> : <EmptyList variant='address' />
+        }
       />
 
       {!isOpenBottomSheet && <AddButton onPress={onOpenBottomSheet} />}

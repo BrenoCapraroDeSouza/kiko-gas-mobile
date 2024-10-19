@@ -3,16 +3,19 @@ import { getBottomSpace } from 'react-native-iphone-screen-helper';
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
-import { AddressCardProps } from '@/@types';
+import { AddressDTOProps } from '@/@types';
 import { isIos } from '@/helpers';
 
 export const List = styled(
   FlatList as new (
-    props: FlatListProps<Pick<AddressCardProps, 'title' | 'address'>>,
-  ) => FlatList<Pick<AddressCardProps, 'title' | 'address'>>,
+    props: FlatListProps<AddressDTOProps>,
+  ) => FlatList<AddressDTOProps>,
 ).attrs({
   contentContainerStyle: {
     flexGrow: 1,
+
+    justifyContent: 'center',
+    alignItems: 'center',
 
     paddingTop: RFValue(20),
     paddingHorizontal: RFValue(20),
