@@ -12,21 +12,27 @@ import { Container, Content } from './styled';
 
 const BottomSheet = forwardRef<GorhomBottomSheet, BottomSheetProps>(
   (props, ref) => {
-    const { snaps, children, onClose } = props;
+    const { snaps, children, enablePanDownToClose = true, onClose } = props;
 
     const theme = useTheme();
+
+    const handleCloseBottomSheet = useCallback(() => {
+      if (!enablePanDownToClose) return;
+
+      onClose();
+    }, [enablePanDownToClose, onClose]);
 
     const renderBackdrop = useCallback(
       (props: BottomSheetBackdropProps) => (
         <BottomSheetBackdrop
           {...props}
-          opacity={0.4}
-          onPress={onClose}
-          disappearsOnIndex={-1}
           appearsOnIndex={0}
+          disappearsOnIndex={-1}
+          opacity={0.4}
+          onPress={handleCloseBottomSheet}
         />
       ),
-      [],
+      [handleCloseBottomSheet],
     );
 
     const snapPoints = useMemo(() => [...snaps], [snaps]);
@@ -39,8 +45,9 @@ const BottomSheet = forwardRef<GorhomBottomSheet, BottomSheetProps>(
         keyboardBlurBehavior='restore'
         snapPoints={snapPoints}
         backdropComponent={renderBackdrop}
-        enablePanDownToClose
-        onClose={onClose}
+        enablePanDownToClose={enablePanDownToClose}
+        enableHandlePanningGesture={enablePanDownToClose}
+        onClose={handleCloseBottomSheet}
         backgroundStyle={{ backgroundColor: theme.colors.content }}
         handleIndicatorStyle={{
           marginTop: RFValue(8),
