@@ -22,3 +22,19 @@ export const List = styled(
   },
   showsVerticalScrollIndicator: false,
 })``;
+
+export const BottomSheetContent = styled.View`
+  flex: 1;
+
+  width: 100%;
+`;
+
+export const InputContainer = styled.View`
+  flex: 1;
+
+  width: 100%;
+
+  margin: ${RFValue(32)}px 0;
+
+  gap: ${RFValue(20)}px;
+`;

@@ -14,6 +14,7 @@ export interface InputProps {
   value?: string;
   placeholder?: string;
   isDisabled?: boolean;
+  isBottomSheetMode?: boolean;
   returnKeyType?: ReturnKeyTypeOptions;
   onChangeText?: (value: string) => void;
   onSubmitEditing?: () => void;

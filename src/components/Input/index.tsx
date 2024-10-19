@@ -1,20 +1,21 @@
 import { setStringAsync } from 'expo-clipboard';
-import { ForwardedRef, forwardRef, memo, useState } from 'react';
-import { KeyboardTypeOptions, TextInput } from 'react-native';
+import { forwardRef, memo, useState } from 'react';
+import { KeyboardTypeOptions, TextInput, TextInputProps } from 'react-native';
 import { useTheme } from 'styled-components';
 
 import { InputProps, InputTextContentType, InputVariant } from '@/@types';
 
 import Icon from '../Icon';
-import { Button, Container, GenericInput } from './styled';
+import { BottomSheetInput, Button, Container, GenericInput } from './styled';
 
-const Input = forwardRef((props: InputProps, ref?: ForwardedRef<TextInput>) => {
+const Input = forwardRef<TextInput, InputProps>((props, ref) => {
   const {
     variant = 'text',
     returnKeyType = 'default',
     value = '',
     placeholder = '',
     isDisabled = false,
+    isBottomSheetMode = false,
     onChangeText,
     onSubmitEditing,
   } = props;
@@ -46,25 +47,30 @@ const Input = forwardRef((props: InputProps, ref?: ForwardedRef<TextInput>) => {
     text: undefined,
   };
 
+  const commonInputProps: TextInputProps = {
+    value,
+    placeholder,
+    returnKeyType,
+    keyboardType,
+    editable: !isDisabled,
+    readOnly: isDisabled || isCopy,
+    textContentType: textContentTypes[variant],
+    secureTextEntry: !isVisibleText,
+    keyboardAppearance: 'dark',
+    cursorColor: theme.colors.secondary,
+    placeholderTextColor: theme.colors.secondary70,
+    selectionColor: theme.colors.secondary,
+    onChangeText,
+    onSubmitEditing,
+  };
+
   return (
     <Container>
-      <GenericInput
-        ref={ref}
-        value={value}
-        editable={!isDisabled}
-        readOnly={isDisabled || isCopy}
-        returnKeyType={returnKeyType}
-        placeholder={placeholder}
-        textContentType={textContentTypes[variant]}
-        keyboardType={keyboardType}
-        secureTextEntry={!isVisibleText}
-        keyboardAppearance='dark'
-        cursorColor={theme.colors.secondary}
-        placeholderTextColor={theme.colors.secondary70}
-        selectionColor={theme.colors.secondary}
-        onChangeText={onChangeText}
-        onSubmitEditing={onSubmitEditing}
-      />
+      {isBottomSheetMode ? (
+        <BottomSheetInput ref={ref} {...commonInputProps} />
+      ) : (
+        <GenericInput ref={ref} {...commonInputProps} />
+      )}
 
       {isPassword && (
         <Button

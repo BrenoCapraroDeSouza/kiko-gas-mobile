@@ -1,3 +1,4 @@
+import { BottomSheetTextInput } from '@gorhom/bottom-sheet';
 import { BorderlessButton } from 'react-native-gesture-handler';
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
@@ -25,6 +26,20 @@ export const Container = styled.View`
 `;
 
 export const GenericInput = styled.TextInput<InputGenericStyles>`
+  flex: 1;
+
+  height: 100%;
+
+  font-size: ${({ theme }) => theme.fontSizes.body}px;
+  font-family: ${({ theme }) => theme.fontFamilies.medium};
+
+  color: ${({ theme, readOnly, editable }) =>
+    theme.colors[readOnly || !editable ? 'secondary70' : 'secondary']};
+`;
+
+export const BottomSheetInput = styled(
+  BottomSheetTextInput,
+)<InputGenericStyles>`
   flex: 1;
 
   height: 100%;

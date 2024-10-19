@@ -1,5 +1,6 @@
 import AddButton from './AddButton';
 import AddressCard from './AddressCard';
+import BottomSheet from './BottomSheet';
 import Button from './Button';
 import Container from './Container';
 import EmptyList from './EmptyList';
@@ -12,6 +13,7 @@ import Text from './Text';
 export {
   AddButton,
   AddressCard,
+  BottomSheet,
   Button,
   Container,
   EmptyList,

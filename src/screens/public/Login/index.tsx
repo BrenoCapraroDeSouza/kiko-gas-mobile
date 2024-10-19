@@ -42,9 +42,7 @@ export function Login() {
   }
 
   function handleSubmitEditing(): void {
-    if (inputPasswordRef && inputPasswordRef.current) {
-      inputPasswordRef.current.focus();
-    }
+    if (inputPasswordRef.current) inputPasswordRef.current.focus();
   }
 
   async function onSubmit(): Promise<void> {
