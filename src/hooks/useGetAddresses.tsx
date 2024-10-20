@@ -19,7 +19,8 @@ export function useGetAddresses() {
       },
     });
 
-    return data;
+    // TODO: Get to API collaborators add `orderBy: desc`
+    return data.reverse();
   }
 
   const {
