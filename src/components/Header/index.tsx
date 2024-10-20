@@ -4,7 +4,6 @@ import { memo, useState } from 'react';
 
 import { IconVariant } from '@/@types';
 import { HeaderProps, HeaderVariant } from '@/@types';
-import { useAuth } from '@/hooks';
 
 import Icon from '../Icon';
 import Text from '../Text';
@@ -16,8 +15,6 @@ function Header(props: HeaderProps) {
   const navigation = useNavigation();
 
   const [isEnabledDelete, setIsEnabledDelete] = useState<boolean>(false);
-
-  const { handleLogout } = useAuth();
 
   const isAddress = variant === 'address';
   const isGas = variant === 'gas';
@@ -38,7 +35,6 @@ function Header(props: HeaderProps) {
 
   function handlePressDelete(): void {
     setIsEnabledDelete(!isEnabledDelete);
-    handleLogout();
   }
 
   return (

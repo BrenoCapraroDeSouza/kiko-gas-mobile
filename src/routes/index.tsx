@@ -1,32 +1,26 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { StackRoutesProps } from '@/@types';
-import { Storage } from '@/libs';
+import { useAuth } from '@/hooks';
 import { Login, MyAddresses, MyGas } from '@/screens';
 
 const { Navigator, Screen } = createNativeStackNavigator<StackRoutesProps>();
 
 export function Routes() {
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const { isAuthenticated, isMakingRefresh } = useAuth();
 
   useEffect(() => {
-    async function getToken(): Promise<void> {
-      const token = await Storage.getItem('token');
-
-      setIsAuthenticated(!!token);
-      setIsLoading(false);
-
-      await SplashScreen.hideAsync();
+    async function handleHiddenSplash(): Promise<void> {
+      if (!isMakingRefresh) await SplashScreen.hideAsync();
     }
 
-    getToken();
-  }, []);
+    handleHiddenSplash();
+  }, [isMakingRefresh]);
 
-  if (isLoading) return null;
+  if (isMakingRefresh) return null;
 
   return (
     <NavigationContainer>

@@ -9,23 +9,27 @@ export const AuthContext = createContext({} as AuthContextProps);
 export function AuthProvider({ children }: Required<PropsWithChildren>) {
   const { isRefreshError, refresh } = useRefresh();
 
+  const [isMakingRefresh, setIsMakingRefresh] = useState<boolean>(true);
   const [accessToken, setAccessToken] = useState<string>('');
   const [isAuthenticated, setIsAuthenticated] =
     useState<boolean>(!!accessToken);
 
-  async function changeToLogged(): Promise<void> {
+  async function handleAuthenticate(): Promise<void> {
     const newTokenExists = await Storage.getItem('token');
     setIsAuthenticated(!!newTokenExists);
+    setIsMakingRefresh(false);
   }
 
   async function handleLogout(): Promise<void> {
     setIsAuthenticated(false);
+    setIsMakingRefresh(false);
 
     await Storage.clear();
   }
 
   useEffect(() => {
-    if (accessToken) refresh();
+    refresh();
+    handleAuthenticate();
   }, [accessToken, refresh]);
 
   useEffect(() => {
@@ -37,7 +41,6 @@ export function AuthProvider({ children }: Required<PropsWithChildren>) {
       const token = await Storage.getItem('token');
 
       setAccessToken(token || '');
-      setIsAuthenticated(!!token);
     }
 
     getToken();
@@ -45,7 +48,12 @@ export function AuthProvider({ children }: Required<PropsWithChildren>) {
 
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, changeToLogged, handleLogout }}
+      value={{
+        isAuthenticated,
+        isMakingRefresh,
+        handleAuthenticate,
+        handleLogout,
+      }}
     >
       {children}
     </AuthContext.Provider>

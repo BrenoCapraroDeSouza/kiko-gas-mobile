@@ -20,7 +20,7 @@ import {
 export function Login() {
   const navigation = useNavigation();
   const { show } = useToast();
-  const { changeToLogged } = useAuth();
+  const { handleAuthenticate } = useAuth();
   const {
     isLoginError,
     isLoginLoading,
@@ -48,7 +48,7 @@ export function Login() {
   async function onSubmit(): Promise<void> {
     await login(userCredentials);
 
-    await changeToLogged();
+    await handleAuthenticate();
   }
 
   useEffect(() => {

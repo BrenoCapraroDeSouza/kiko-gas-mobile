@@ -38,8 +38,6 @@ export function MyAddresses() {
   const { addresses, isAddressesLoading, refreshAddresses } = useGetAddresses();
   const { show } = useToast();
 
-  console.log(isAddressesLoading);
-
   const isDisabled = !newAddress.name || !newAddress.address;
 
   function handleSubmitEditing(): void {

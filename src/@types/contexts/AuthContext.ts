@@ -1,5 +1,6 @@
 export interface AuthContextProps {
   isAuthenticated: boolean;
-  changeToLogged(): Promise<void>;
+  isMakingRefresh: boolean;
+  handleAuthenticate(): Promise<void>;
   handleLogout(): Promise<void>;
 }

@@ -1,16 +1,11 @@
 import { useMutation } from '@tanstack/react-query';
-import { useState } from 'react';
 
 import { LoginResponseDTOProps } from '@/@types';
 import { api } from '@/config';
 import { Storage } from '@/libs';
 
 export function useRefresh() {
-  const [isRefreshDone, setIsRefreshDone] = useState<boolean>(false);
-
-  async function fetchMutation(): Promise<void> {
-    if (isRefreshDone) return;
-
+  async function fetchMutation(): Promise<boolean> {
     const accessToken = (await Storage.getItem('token')) || '';
 
     const { data } = await api.post<LoginResponseDTOProps>(
@@ -25,15 +20,13 @@ export function useRefresh() {
 
     await Storage.setItem('token', JSON.stringify(data.token));
 
-    setIsRefreshDone(true);
+    return !!data.token;
   }
 
   const { isError: isRefreshError, mutateAsync: refresh } = useMutation({
     mutationKey: ['refresh'],
     mutationFn: fetchMutation,
     onError: async () => {
-      setIsRefreshDone(false);
-
       await Storage.clear();
     },
   });
