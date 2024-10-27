@@ -45,6 +45,8 @@ export function MyAddresses() {
   }
 
   async function onSubmit(): Promise<void> {
+    if (isDisabled) return;
+
     const isCreated = await createNewAddress(newAddress);
 
     if (isCreated) show('Endereço adicionado!');
