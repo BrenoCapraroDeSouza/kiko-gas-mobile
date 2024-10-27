@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 
 import { StackRoutesProps } from '@/@types';
 import { useAuth } from '@/hooks';
-import { Login, MyAddresses, MyGas } from '@/screens';
+import { Login, MyAddresses, MyCylinders } from '@/screens';
 
 const { Navigator, Screen } = createNativeStackNavigator<StackRoutesProps>();
 
@@ -30,7 +30,7 @@ export function Routes() {
       >
         <Screen name='Login' component={Login} />
         <Screen name='MyAddresses' component={MyAddresses} />
-        <Screen name='MyGas' component={MyGas} />
+        <Screen name='MyCylinders' component={MyCylinders} />
       </Navigator>
     </NavigationContainer>
   );

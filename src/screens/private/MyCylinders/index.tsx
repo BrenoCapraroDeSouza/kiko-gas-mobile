@@ -1,6 +1,6 @@
 import { Container } from '@/components';
 
-export function MyGas() {
+export function MyCylinders() {
   return (
     <Container>
       <></>
