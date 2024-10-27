@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { TextInput, View } from 'react-native';
 import { useToast } from 'react-native-toast-notifications';
 
-import { AddressDTOProps } from '@/@types';
+import { AddressDTOProps, AddressProps } from '@/@types';
 import {
   AddButton,
   AddressCard,
@@ -22,8 +22,8 @@ import { BottomSheetContent, InputContainer, List } from './styled';
 
 export function MyAddresses() {
   const [isOpenBottomSheet, setIsOpenBottomSheet] = useState<boolean>(false);
-  const [newAddress, setNewAddress] = useState<AddressDTOProps>(
-    {} as AddressDTOProps,
+  const [newAddress, setNewAddress] = useState<AddressProps>(
+    {} as AddressProps,
   );
 
   const inputAddressRef = useRef<TextInput>(null);
@@ -66,7 +66,7 @@ export function MyAddresses() {
       bottomSheetRef.current.close();
     }
 
-    setNewAddress({} as AddressDTOProps);
+    setNewAddress({} as AddressProps);
   }, []);
 
   const renderItem = useCallback(
@@ -78,7 +78,7 @@ export function MyAddresses() {
 
   // TODO: Change to `id` property
   const keyExtractor = useCallback(
-    (address: AddressDTOProps) => address.address.toString(),
+    (address: AddressDTOProps) => address.id.toString(),
     [],
   );
 

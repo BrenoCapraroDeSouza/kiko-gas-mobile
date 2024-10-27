@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 
-import { LoginResponseDTOProps } from '@/@types';
+import { RefreshResponseProps } from '@/@types';
 import { api } from '@/config';
 import { Storage } from '@/libs';
 
@@ -8,7 +8,7 @@ export function useRefresh() {
   async function fetchMutation(): Promise<boolean> {
     const accessToken = (await Storage.getItem('token')) || '';
 
-    const { data } = await api.post<LoginResponseDTOProps>(
+    const { data } = await api.post<RefreshResponseProps>(
       '/refresh',
       {},
       {

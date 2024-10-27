@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Keyboard, TextInput, TouchableWithoutFeedback } from 'react-native';
 import { useToast } from 'react-native-toast-notifications';
 
-import { LoginDTOProps } from '@/@types';
+import { CredentialsLoginProps } from '@/@types';
 import { Button, Container, Input } from '@/components';
 import { PRIMARY_LOGO } from '@/config';
 import { useAuth, useLogin } from '@/hooks';
@@ -29,7 +29,9 @@ export function Login() {
     login,
   } = useLogin();
 
-  const [userCredentials, setUserCredentials] = useState({} as LoginDTOProps);
+  const [userCredentials, setUserCredentials] = useState(
+    {} as CredentialsLoginProps,
+  );
 
   const inputPasswordRef = useRef<TextInput>(null);
 

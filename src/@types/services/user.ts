@@ -1,7 +1,7 @@
-import { AddressDTOProps } from './address';
+import { AddressProps } from '..';
 
-export interface UserDTOProps {
-  addresses: AddressDTOProps[];
+export interface UserProps {
+  addresses: AddressProps[];
   id: string;
   name: string;
   phone: string;
