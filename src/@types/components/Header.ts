@@ -1,4 +1,4 @@
-export type HeaderVariant = 'address' | 'gas';
+export type HeaderVariant = 'address' | 'cylinders';
 
 export interface HeaderProps {
   variant: HeaderVariant;

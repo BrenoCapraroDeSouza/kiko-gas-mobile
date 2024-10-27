@@ -17,16 +17,16 @@ function Header(props: HeaderProps) {
   const [isEnabledDelete, setIsEnabledDelete] = useState<boolean>(false);
 
   const isAddress = variant === 'address';
-  const isGas = variant === 'gas';
+  const isCylinders = variant === 'cylinders';
 
   const icons: Record<HeaderVariant, IconVariant> = {
     address: isEnabledDelete ? 'x' : 'trash',
-    gas: 'caret-left',
+    cylinders: 'caret-left',
   };
 
   const titles: Record<HeaderVariant, string> = {
     address: 'Adicione e veja seus endereços de forma agradável e simples',
-    gas: 'Gerencie seu gás da melhor maneira!',
+    cylinders: 'Gerencie seu gás da melhor maneira!',
   };
 
   function handleGoBack(): void {
@@ -39,7 +39,7 @@ function Header(props: HeaderProps) {
 
   return (
     <Container>
-      {isGas && (
+      {isCylinders && (
         <Button isLeft onPress={handleGoBack}>
           <Icon variant={icons[variant]} size='default' />
         </Button>
