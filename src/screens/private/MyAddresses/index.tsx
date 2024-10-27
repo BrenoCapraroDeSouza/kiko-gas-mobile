@@ -1,4 +1,5 @@
 import GorhomBottomSheet from '@gorhom/bottom-sheet';
+import { useNavigation } from '@react-navigation/native';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { TextInput, View } from 'react-native';
 import { useToast } from 'react-native-toast-notifications';
@@ -36,9 +37,15 @@ export function MyAddresses() {
     setIsCreateAddressError,
   } = useCreateAddress();
   const { addresses, isAddressesLoading, refreshAddresses } = useGetAddresses();
+  const navigation = useNavigation();
   const { show } = useToast();
 
   const isDisabled = !newAddress.name || !newAddress.address;
+
+  // TODO: Check if it must be `id` property with API
+  function goToMyCylinders(): void {
+    navigation.navigate('MyCylinders');
+  }
 
   function handleSubmitEditing(): void {
     if (inputAddressRef.current) inputAddressRef.current.focus();
@@ -73,12 +80,16 @@ export function MyAddresses() {
 
   const renderItem = useCallback(
     (address: AddressDTOProps) => (
-      <AddressCard {...address} title={address.name} />
+      <AddressCard
+        {...address}
+        title={address.name}
+        onPress={goToMyCylinders}
+      />
     ),
     [],
   );
 
-  // TODO: Change to `id` property
+  // TODO: Change to `id` property in the API
   const keyExtractor = useCallback(
     (address: AddressDTOProps) => address.id.toString(),
     [],
