@@ -1,4 +1,4 @@
-export type AddButtonVariant = 'add-address' | 'add-gas';
+export type AddButtonVariant = 'add-address' | 'add-cylinder';
 
 export interface AddButtonProps {
   variant?: AddButtonVariant;

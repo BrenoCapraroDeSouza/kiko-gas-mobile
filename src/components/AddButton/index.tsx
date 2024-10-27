@@ -53,7 +53,7 @@ function AddButton(props: AddButtonProps) {
 
   const icons: Record<AddButtonVariant, React.JSX.Element> = {
     'add-address': <Icon variant='map-pin-plus' size='large' />,
-    'add-gas': <Icon variant='plus-circle' size='large' />,
+    'add-cylinder': <Icon variant='plus-circle' size='large' />,
   };
 
   return (
