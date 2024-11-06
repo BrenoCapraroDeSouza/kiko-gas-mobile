@@ -4,6 +4,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 
 import { StackRoutesProps } from '@/@types';
+import { BottomSheetDialogProvider } from '@/contexts';
 import { useAuth } from '@/hooks';
 import { Login, MyAddresses, MyCylinders } from '@/screens';
 
@@ -23,15 +24,17 @@ export function Routes() {
   if (isMakingRefresh) return null;
 
   return (
-    <NavigationContainer>
-      <Navigator
-        initialRouteName={isAuthenticated ? 'MyAddresses' : 'Login'}
-        screenOptions={{ headerShown: false }}
-      >
-        <Screen name='Login' component={Login} />
-        <Screen name='MyAddresses' component={MyAddresses} />
-        <Screen name='MyCylinders' component={MyCylinders} />
-      </Navigator>
-    </NavigationContainer>
+    <BottomSheetDialogProvider>
+      <NavigationContainer>
+        <Navigator
+          initialRouteName={isAuthenticated ? 'MyAddresses' : 'Login'}
+          screenOptions={{ headerShown: false }}
+        >
+          <Screen name='Login' component={Login} />
+          <Screen name='MyAddresses' component={MyAddresses} />
+          <Screen name='MyCylinders' component={MyCylinders} />
+        </Navigator>
+      </NavigationContainer>
+    </BottomSheetDialogProvider>
   );
 }
