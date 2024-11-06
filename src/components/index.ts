@@ -1,6 +1,7 @@
 import AddButton from './AddButton';
 import AddressCard from './AddressCard';
 import BottomSheet from './BottomSheet';
+import BottomSheetDialog from './BottomSheetDialog';
 import Button from './Button';
 import Container from './Container';
 import EmptyList from './EmptyList';
@@ -14,6 +15,7 @@ export {
   AddButton,
   AddressCard,
   BottomSheet,
+  BottomSheetDialog,
   Button,
   Container,
   EmptyList,
