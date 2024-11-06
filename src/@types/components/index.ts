@@ -1,6 +1,7 @@
 export * from './AddButton';
 export * from './AddressCard';
 export * from './BottomSheet';
+export * from './BottomSheetDialog';
 export * from './Button';
 export * from './EmptyList';
 export * from './Header';
