@@ -1,7 +1,7 @@
 import GorhomBottomSheet from '@gorhom/bottom-sheet';
 import { useNavigation } from '@react-navigation/native';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { TextInput, View } from 'react-native';
+import { TextInput } from 'react-native';
 import { useToast } from 'react-native-toast-notifications';
 
 import { AddressDTOProps, AddressProps } from '@/@types';
@@ -19,7 +19,12 @@ import {
 } from '@/components';
 import { useCreateAddress, useGetAddresses } from '@/hooks';
 
-import { BottomSheetContent, InputContainer, List } from './styled';
+import {
+  BottomSheetContent,
+  ButtonAddWrapper,
+  InputContainer,
+  List,
+} from './styled';
 
 export function MyAddresses() {
   const [isOpenBottomSheet, setIsOpenBottomSheet] = useState<boolean>(false);
@@ -157,14 +162,14 @@ export function MyAddresses() {
             />
           </InputContainer>
 
-          <View style={{ width: '100%', marginTop: 20 }}>
+          <ButtonAddWrapper>
             <Button
               title='Adicionar'
               isDisabled={isDisabled || isCreatingNewAddress}
               isLoading={isCreatingNewAddress}
               onPress={onSubmit}
             />
-          </View>
+          </ButtonAddWrapper>
         </BottomSheetContent>
       </BottomSheet>
     </Container>

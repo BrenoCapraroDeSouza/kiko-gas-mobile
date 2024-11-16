@@ -41,3 +41,9 @@ export const InputContainer = styled.View`
 
   gap: ${RFValue(20)}px;
 `;
+
+export const ButtonAddWrapper = styled.View`
+  width: 100%;
+
+  margin-top: ${RFValue(20)}px;
+`;
