@@ -33,8 +33,6 @@ export const BottomSheetContent = styled.View`
 `;
 
 export const InputContainer = styled.View`
-  flex: 1;
-
   width: 100%;
 
   margin: ${RFValue(32)}px 0;
@@ -43,7 +41,11 @@ export const InputContainer = styled.View`
 `;
 
 export const ButtonAddWrapper = styled.View`
+  flex-grow: 1;
+
   width: 100%;
+
+  justify-content: flex-end;
 
   margin-top: ${RFValue(20)}px;
 `;
