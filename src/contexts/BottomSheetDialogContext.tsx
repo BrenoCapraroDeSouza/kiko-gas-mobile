@@ -1,4 +1,12 @@
-import { createContext, PropsWithChildren, useMemo, useState } from 'react';
+import GorhomBottomSheet from '@gorhom/bottom-sheet';
+import {
+  createContext,
+  PropsWithChildren,
+  useCallback,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import {
   BottomSheetDialogContextProps,
@@ -17,17 +25,30 @@ export function BottomSheetDialogProvider({
   const [bottomSheetDialogInfo, setBottomSheetDialogInfo] =
     useState<BottomSheetDialogInfoProps>({} as BottomSheetDialogInfoProps);
 
-  function handleConfirmBottomSheetDialog(): void {
-    setBottomSheetDialogInfo({} as BottomSheetDialogInfoProps);
-  }
+  const bottomSheetDialogRef = useRef<GorhomBottomSheet>(null);
 
-  function handleCloseBottomSheetDialog(): void {
+  const handleCloseBottomSheetDialog = useCallback(() => {
     setBottomSheetDialogInfo({} as BottomSheetDialogInfoProps);
-  }
 
-  function handleOpenBottomSheetDialog(info: BottomSheetDialogInfoProps): void {
-    setBottomSheetDialogInfo(info);
-  }
+    if (bottomSheetDialogRef.current) {
+      bottomSheetDialogRef.current.close();
+    }
+  }, []);
+
+  const handleConfirmBottomSheetDialog = useCallback(() => {
+    handleCloseBottomSheetDialog();
+  }, []);
+
+  const handleOpenBottomSheetDialog = useCallback(
+    (info: BottomSheetDialogInfoProps) => {
+      setBottomSheetDialogInfo(info);
+
+      if (bottomSheetDialogRef.current) {
+        bottomSheetDialogRef.current.snapToIndex(0);
+      }
+    },
+    [],
+  );
 
   const elements: Record<BottomSheetDialogVariant, string> = useMemo(
     () => ({
@@ -45,7 +66,6 @@ export function BottomSheetDialogProvider({
     [bottomSheetDialogInfo],
   );
 
-  const isOpen = !!bottomSheetDialogInfo?.id;
   const element = elements[bottomSheetDialogInfo?.variant];
   const advertise = advertises[bottomSheetDialogInfo?.variant];
 
@@ -56,7 +76,7 @@ export function BottomSheetDialogProvider({
       {children}
 
       <BottomSheetDialog
-        isOpen={isOpen}
+        ref={bottomSheetDialogRef}
         element={element}
         advertise={advertise}
         onClose={handleCloseBottomSheetDialog}
