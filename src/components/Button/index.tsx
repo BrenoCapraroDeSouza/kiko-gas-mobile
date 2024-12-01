@@ -3,9 +3,10 @@ import { useTheme } from 'styled-components';
 
 import { ButtonProps, ButtonVariant, Colors } from '@/@types';
 
+import Icon from '../Icon';
 import Spinner from '../Spinner';
 import Text from '../Text';
-import { Container, GenericButton } from './styled';
+import { Container, Content, GenericButton } from './styled';
 
 function Button(props: ButtonProps) {
   const {
@@ -13,6 +14,7 @@ function Button(props: ButtonProps) {
     variant = 'primary',
     isDisabled = false,
     isLoading = false,
+    icon,
     onPress,
   } = props;
 
@@ -37,14 +39,18 @@ function Button(props: ButtonProps) {
         {isLoading ? (
           <Spinner color={colors[variant]} />
         ) : (
-          <Text
-            color={colors[variant]}
-            fontSize='alternative'
-            fontFamily='semiBold'
-            toCenter
-          >
-            {title}
-          </Text>
+          <Content>
+            {icon && <Icon variant={icon} color={colors[variant]} />}
+
+            <Text
+              color={colors[variant]}
+              fontSize='alternative'
+              fontFamily='semiBold'
+              toCenter
+            >
+              {title}
+            </Text>
+          </Content>
         )}
       </GenericButton>
     </Container>

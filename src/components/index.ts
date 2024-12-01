@@ -4,6 +4,7 @@ import BottomSheet from './BottomSheet';
 import BottomSheetDialog from './BottomSheetDialog';
 import Button from './Button';
 import Container from './Container';
+import CylinderCard from './CylinderCard';
 import EmptyList from './EmptyList';
 import Header from './Header';
 import Icon from './Icon';
@@ -18,6 +19,7 @@ export {
   BottomSheetDialog,
   Button,
   Container,
+  CylinderCard,
   EmptyList,
   Header,
   Icon,

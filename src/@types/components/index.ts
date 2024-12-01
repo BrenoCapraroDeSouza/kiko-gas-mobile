@@ -3,6 +3,7 @@ export * from './AddressCard';
 export * from './BottomSheet';
 export * from './BottomSheetDialog';
 export * from './Button';
+export * from './CylinderCard';
 export * from './EmptyList';
 export * from './Header';
 export * from './Icon';

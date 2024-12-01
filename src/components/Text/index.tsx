@@ -10,15 +10,21 @@ function Text(props: TextProps) {
     color = 'secondary',
     fontSize = 'body',
     fontFamily = 'regular',
+    isGrow = false,
     toCenter = false,
+    numberOfLines,
+    ellipsizeMode,
   } = props;
 
   return (
     <Typography
+      isGrow={isGrow}
       color={color}
       fontFamily={fontFamily}
       fontSize={fontSize}
       toCenter={toCenter}
+      numberOfLines={numberOfLines}
+      ellipsizeMode={ellipsizeMode}
     >
       {children}
     </Typography>
